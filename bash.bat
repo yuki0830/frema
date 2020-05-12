@@ -1,0 +1,1 @@
+docker-compose exec frema_web bash

@@ -1,0 +1,25 @@
+version: '3'
+services:
+  frema_web:
+    build: .
+    environment:
+      TZ: Asia/Tokyo
+    volumes:
+      - ./web:/var/www/html/frema
+    ports:
+      - 8081:8081
+      - 3000:3000
+  frema_database:
+    image: postgres:11-alpine
+    container_name: frema_database
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - frema_db:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+
+volumes:
+  frema_db:
+    external: true
